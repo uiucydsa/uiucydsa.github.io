@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="./images/profile.jpg">
+    <meta property="og:image:type" content="image/jpg">
+    <meta name="description" content="student, innovator, engineer" />
+    <meta property="og:title" content="sameer iyengar">
+    <meta property="og:description" content="student, innovator, engineer">
+    <title>sameer iyengar</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <style>
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+
+        :root {
+            /* Light Theme (default) - High contrast */
+            --bg-primary: #f5f5f7;
+            --text-primary: #590303;
+            --glass-light: rgba(255, 255, 255, 0.85);
+            --glass-text: #121212;
+            --border-light: rgba(0, 0, 0, 0.1);
+            --accent-color: #3b82f6;
+
+            /* Dark Theme */
+            --bg-primary-dark: #4f0101;
+            --text-primary-dark: #f8f9fa;
+            --glass-dark: rgba(74, 0, 0, 0.85);
+            --glass-text-dark: #f8f9fa;
+            --border-dark: rgba(255, 255, 255, 0.15);
+            --accent-color-dark: #60a5fa;
+        }
+
+        .dark-theme {
+            --bg-primary: var(--bg-primary-dark);
+            --text-primary: var(--text-primary-dark);
+            --glass-light: var(--glass-dark);
+            --glass-text: var(--glass-text-dark);
+            --border-light: var(--border-dark);
+            --accent-color: var(--accent-color-dark);
+        }
+
+        body {
+            font-family: 'DM Mono', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.5s ease, color 0.3s ease;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            line-height: 1.6;
+        }
+
+        /* Glassmorphism elements */
+        header,
+        .gallery-item,
+        footer {
+            background: var(--glass-light) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: var(--border-light) !important;
+            color: var(--glass-text) !important;
+        }
+
+        /* Header specific */
+        header {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Navigation */
+        nav a {
+            color: var(--glass-text);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Theme toggle button */
+        #theme-toggle {
+            background: var(--glass-light);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero section */
+        #home {
+            background-image: url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Gallery */
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .gallery-img:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5vh;
+            background: var(--glass-light);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .caption {
+            color: var(--text-primary);
+        }
+
+        /* Blob animation */
+
+        @keyframes move {
+            0% {
+                transform: scale(1) translate(10px, -30px);
+            }
+
+            38% {
+                transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg);
+            }
+
+            40% {
+                transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg);
+            }
+
+            78% {
+                transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg);
+            }
+
+            80% {
+                transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg);
+            }
+
+            100% {
+                transform: scale(1) translate(10px, -30px);
+            }
+        }
+
+        /* Dropdown menu */
+        .desktop-dropdown-menu {
+            margin-top: 0.5rem;
+            pointer-events: auto;
+            background: var(--glass-light);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+        }
+
+        .desktop-dropdown:hover .desktop-dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed top-0 z-10 w-full py-4 ">
+
+        <div class="container flex items-center justify-between px-4 mx-auto">
+            <img src="images/profile.jpg" alt="Profile Picture"
+                class="w-10 h-10 rounded-full border-2 border-accent-color">
+            <h1 class="text-2xl font-semibold">UIUC YDSA</h1>
+            <div class="md:hidden">
+                <button id="nav-toggle" class="focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <nav id="nav-menu" class="hidden md:flex md:space-x-6">
+                <ul class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
+                    <li><a href="/index.html">home</a></li>
+                    <li><a href="/portfolio.html">portfolio</a></li>
+                    <li><a href="resume.html">resume</a></li>
+                    <li><a href="https://www.linkedin.com/in/sameer-iyengar/">LinkedIn</a></li>
+                    <li>
+                        <button id="theme-toggle" class="p-2 ml-4 rounded-full">
+                            <span class="light-icon">🌞</span>
+                            <span class="hidden dark-icon">🌙</span>
+                        </button>
+                    </li>
+                    <!-- Desktop Fun Things Dropdown -->
+                    <li class="relative group">
+                        <button class="flex items-center">
+                            fun things
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 hidden pt-2 rounded-lg group-hover:block desktop-dropdown-menu">
+                            <a href="/cat-gallery.html" class="block px-4 py-2 hover:text-accent-color">eva!!</a>
+                        </div>
+                    </li>
+                    <li><a href="/contact.html">contact</a></li>
+                    <li><a href="/about.html">about</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <section id="home" class="flex items-center justify-center h-screen ">
+
+        <div class="py-4 text-center rounded-md glass bg-slate-50">
+            <h2 class="px-16 mb-4 text-4xl font-bold --glass-text-dark ">welcome to my website!</h2>
+            <p class="text-lg">life through my lens</p>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center">
+        <div class="container mx-auto">
+            <p>&copy; UIUC YDSA 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const darkIcon = document.querySelector('.dark-icon');
+        const lightIcon = document.querySelector('.light-icon');
+
+        // Check for saved preference or system preference
+        const savedTheme = localStorage.getItem('theme') ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+        if (savedTheme === 'dark') document.documentElement.classList.add('dark-theme');
+
+        // Update UI icons
+        function updateIcons() {
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            darkIcon.classList.toggle('hidden', !isDark);
+            lightIcon.classList.toggle('hidden', isDark);
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark-theme');
+            const theme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            updateIcons();
+        });
+
+        // Initialize icons
+        updateIcons();
+    </script>
+</body>
+
+</html>
