@@ -165,6 +165,7 @@
             color: var(--text-primary);
         }
 
+        /* Blob animation */
 
         @keyframes move {
             0% {
@@ -192,6 +193,7 @@
             }
         }
 
+        /* Dropdown menu */
         .desktop-dropdown-menu {
             margin-top: 0.5rem;
             pointer-events: auto;
@@ -204,6 +206,7 @@
             display: block;
         }
 
+        /* Side panel with calendar and social - visible on lg+ screens */
         #side-panel {
             position: fixed;
             right: 0;
@@ -214,7 +217,9 @@
             border-left: 1px solid var(--border-light);
             overflow-y: auto;
             display: none;
+            /* hidden on small screens */
             padding-top: 5rem;
+            /* space for header */
         }
 
         @media (min-width: 1024px) {
@@ -222,6 +227,7 @@
                 display: block;
             }
 
+            /* Adjust main content to make room for side panel */
             body {
                 padding-right: 400px;
             }

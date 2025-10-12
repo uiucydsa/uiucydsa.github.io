@@ -165,6 +165,7 @@
             color: var(--text-primary);
         }
 
+        /* Blob animation */
 
         @keyframes move {
             0% {
@@ -192,6 +193,7 @@
             }
         }
 
+        /* Dropdown menu */
         .desktop-dropdown-menu {
             margin-top: 0.5rem;
             pointer-events: auto;
@@ -204,6 +206,7 @@
             display: block;
         }
 
+        /* Side panel with calendar and social - visible on lg+ screens */
         #side-panel {
             position: fixed;
             right: 0;
@@ -214,7 +217,9 @@
             border-left: 1px solid var(--border-light);
             overflow-y: auto;
             display: none;
+            /* hidden on small screens */
             padding-top: 5rem;
+            /* space for header */
         }
 
         @media (min-width: 1024px) {
@@ -222,6 +227,7 @@
                 display: block;
             }
 
+            /* Adjust main content to make room for side panel */
             body {
                 padding-right: 400px;
             }
@@ -334,6 +340,7 @@
     </footer>
 
     <script>
+        // Mobile navigation toggle
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
@@ -341,21 +348,25 @@
             navMenu.classList.toggle('hidden');
         });
 
+        // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const darkIcon = document.querySelector('.dark-icon');
         const lightIcon = document.querySelector('.light-icon');
 
+        // Check for saved preference or system preference
         const savedTheme = localStorage.getItem('theme') ||
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
         if (savedTheme === 'dark') document.documentElement.classList.add('dark-theme');
 
+        // Update UI icons
         function updateIcons() {
             const isDark = document.documentElement.classList.contains('dark-theme');
             darkIcon.classList.toggle('hidden', !isDark);
             lightIcon.classList.toggle('hidden', isDark);
         }
 
+        // Toggle theme
         themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark-theme');
             const theme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
@@ -367,7 +378,9 @@
         updateIcons();
     </script>
 
+    <!-- Side panel with Calendar and Instagram -->
     <aside id="side-panel">
+        <!-- Calendar Section -->
         <div class="panel-section">
             <div class="glass rounded-md">
                 <div class="section-header">
@@ -375,11 +388,13 @@
                         alt="Calendar">
                     <h3>events</h3>
                 </div>
+                <!-- Replace src with your Google Calendar embed URL -->
                 <iframe id="calendar-embed"
                     src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&mode=AGENDA"></iframe>
             </div>
         </div>
 
+        <!-- Instagram Section -->
         <div class="panel-section">
             <div class="glass rounded-md">
                 <div class="section-header">
@@ -388,6 +403,7 @@
                     <h3>@uiucydsa</h3>
                 </div>
 
+                <!-- Replace the data-instgrm-permalink with your Instagram post/permalink -->
                 <blockquote class="instagram-media"
                     data-instgrm-permalink="https://www.instagram.com/uiucydsa/?utm_source=ig_embed&amp;utm_campaign=loading"
                     data-instgrm-version="14"
