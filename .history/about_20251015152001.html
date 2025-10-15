@@ -85,10 +85,10 @@
             /* Light Theme (default) - High contrast */
             --bg-primary: #f5f5f7;
             --text-primary: #590303;
-            --glass-light: #EC1F27;
-            --glass-text: #4a0000d9;
+            --glass-light: hsl(0, 71%, 58%);
+            --glass-text: rgba(74, 0, 0, 0.85);
             --border-light: rgba(0, 0, 0, 0.1);
-            --accent-color: #3B3838;
+            --accent-color: #ff2424;
 
             /* Dark Theme */
             --bg-primary-dark: rgba(74, 0, 0, 0.85);
@@ -155,28 +155,6 @@
         nav a {
             color: var(--glass-text);
             transition: all 0.3s ease;
-            display: inline-block;
-            padding: 0.5rem 0;
-        }
-
-        /* Navigation layout fixes */
-        #nav-menu ul {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            #nav-menu ul {
-                flex-direction: column;
-                align-items: start;
-                gap: 0.5rem;
-            }
-        }
-
-        #nav-menu button#theme-toggle {
-            margin-left: 0.5rem;
-            background: var(--glass-light);
         }
 
         nav a:hover {
@@ -460,7 +438,7 @@
                     <h3>events</h3>
                 </div>
                 <iframe id="calendar-embed"
-                    src="https://calendar.google.com/calendar/embed?src=dWl1Y3lkc2FAZ21haWwuY29t&mode=AGENDA"></iframe>
+                    src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&mode=AGENDA"></iframe>
             </div>
         </div>
 

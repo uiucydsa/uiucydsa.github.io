@@ -23,58 +23,8 @@
 
     <style>
         @font-face {
-            font-family: 'ManifoldDSA';
-            src: url('/fonts/ManifoldDSA-Regular.eot');
-            src: url('/fonts/ManifoldDSA-Regular.woff2') format('woff2'),
-                url('/fonts/ManifoldDSA-Regular.woff') format('woff'),
-                url('/fonts/ManifoldDSA-Regular.eot?#iefix') format('embedded-opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'ManifoldDSA';
-            src: url('/fonts/ManifoldDSA-RegularItalic.eot');
-            src: url('/fonts/ManifoldDSA-RegularItalic.woff2') format('woff2'),
-                url('/fonts/ManifoldDSA-RegularItalic.woff') format('woff'),
-                url('/fonts/ManifoldDSA-RegularItalic.eot?#iefix') format('embedded-opentype');
-            font-weight: normal;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'ManifoldDSA';
-            src: url('/fonts/ManifoldDSA-DemiBold.eot');
-            src: url('/fonts/ManifoldDSA-DemiBold.woff2') format('woff2'),
-                url('/fonts/ManifoldDSA-DemiBold.woff') format('woff'),
-                url('/fonts/ManifoldDSA-DemiBold.eot?#iefix') format('embedded-opentype');
-            font-weight: 600;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'ManifoldDSA';
-            src: url('/fonts/ManifoldDSA-Bold.eot');
-            src: url('/fonts/ManifoldDSA-Bold.woff2') format('woff2'),
-                url('/fonts/ManifoldDSA-Bold.woff') format('woff'),
-                url('/fonts/ManifoldDSA-Bold.eot?#iefix') format('embedded-opentype');
-            font-weight: bold;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'ManifoldDSA';
-            src: url('/fonts/ManifoldDSA-BoldItalic.eot');
-            src: url('/fonts/ManifoldDSA-BoldItalic.woff2') format('woff2'),
-                url('/fonts/ManifoldDSA-BoldItalic.woff') format('woff'),
-                url('/fonts/ManifoldDSA-BoldItalic.eot?#iefix') format('embedded-opentype');
-            font-weight: bold;
-            font-style: italic;
-            font-display: swap;
+            font-family: Helvetica_Bold;
+            src: url(Helvetica-Bold.ttf);
         }
 
         .group:hover .group-hover\:block {
@@ -85,10 +35,10 @@
             /* Light Theme (default) - High contrast */
             --bg-primary: #f5f5f7;
             --text-primary: #590303;
-            --glass-light: #EC1F27;
-            --glass-text: #4a0000d9;
+            --glass-light: hsl(0, 71%, 58%);
+            --glass-text: rgba(74, 0, 0, 0.85);
             --border-light: rgba(0, 0, 0, 0.1);
-            --accent-color: #3B3838;
+            --accent-color: #ff2424;
 
             /* Dark Theme */
             --bg-primary-dark: rgba(74, 0, 0, 0.85);
@@ -108,20 +58,13 @@
             --accent-color: var(--accent-color-dark);
         }
 
-        :root {
-            --font-family-base: 'ManifoldDSA', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        }
-
         body {
-            font-family: var(--font-family-base);
+            font-family: 'Helvetica_Bold', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             transition: background 0.5s ease, color 0.3s ease;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
             line-height: 1.6;
-            font-weight: normal;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Glassmorphism elements */
@@ -355,7 +298,7 @@
         <div class="container flex items-center justify-between px-4 mx-auto">
             <img src="images/profile.jpg" alt="Profile Picture"
                 class="w-10 h-10 rounded-full border-2 border-accent-color">
-            <h1 class="text-4xl font-semibold left-0">UIUC YDSA</h1>
+            <h1 class="text-2xl font-semibold left-0">UIUC YDSA</h1>
             <div class="md:hidden flex items-center">
                 <button id="nav-toggle" class="focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
@@ -367,14 +310,28 @@
             </div>
             <nav id="nav-menu" class="flex justify-between max-heightd:flex md:space-x-6">
                 <ul class="flex flex-col md:flex-row md:space-y-4 md:space-x-6">
-                    <li class="pt-2"><a href="/index.html">home</a></li>
-                    <li class="pt-2"><a href="/newsletter.html">newsletter</a></li>
+                    <li class="p-2"><a href="/index.html">home</a></li>
+                    <li class="p-2"><a href="/newsletter.html">newsletter</a></li>
                     <li class="pt-2"><a href="poli-ed.html">poli-ed</a></li>
-                    <li class="pt-2"><a href="/get-involved.html">get involved</a></li>
-                    <li class="pt-2"><a href="/events.html">events</a></li>
-                    <li class="pt-2"><a href="/about.html">about</a></li>
+
+                    <!-- Desktop Fun Things Dropdown -->
+                    <!-- <li class="relative group">
+                        <button class="flex items-center">
+                            fun things
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 hidden pt-2 rounded-lg group-hover:block desktop-dropdown-menu">
+                            <a href="/cat-gallery.html" class="block px-4 py-2 hover:text-accent-color">eva!!</a>
+                        </div>
+                    </li> -->
+                    <li><a href="/events.html">events</a></li>
+                    <li><a href="/about.html">about</a></li>
                     <li>
-                        <button id="theme-toggle" class="p-2  rounded-full">
+                        <button id="theme-toggle" class="p-2 ml-4 rounded-full">
                             <span class="light-icon">🌞</span>
                             <span class="hidden dark-icon">🌙</span>
                         </button>
@@ -387,27 +344,10 @@
     </header>
 
 
+    <section id="home" class="flex items-center justify-center h-screen ">
 
-    <section id="home" class="flex flex-col items-center justify-center px-16 h-screen bg-cover bg-center">
-
-        <div class="py-4 px-2 text-center rounded-md glass mb-4">
-            <h2 class="px-8 text-2xl font-bold">About Us</h2>
-        </div>
-        <div class=" text-left rounded-md glass">
-            <p class="p-auto m-4 text-lg">
-                We are the Young Democratic Socialists of America chapter at the University of Illinois at
-                Urbana-Champaign.
-                We're commited to the fight for democratic socialism in Champaign-Urbana! We are affiliated with the <a
-                    href="https://www.cudsa.red">Champaign-Urbana DSA.</a>
-                </br>
-                Come get involved and help make positive change on campus, in our community, and around the world!
-            </p>
-
-        </div>
-        <div class="mt-6 rounded-md glass p-4">
-            <a href="/get-involved.html">
-                Get Involved!
-                </button>
+        <div class="py-4 text-center rounded-md glass">
+            <h2 class="px-16 mb-4 text-4xl font-bold">Welcome to UIUC YDSA!</h2>
         </div>
     </section>
 
@@ -460,7 +400,7 @@
                     <h3>events</h3>
                 </div>
                 <iframe id="calendar-embed"
-                    src="https://calendar.google.com/calendar/embed?src=dWl1Y3lkc2FAZ21haWwuY29t&mode=AGENDA"></iframe>
+                    src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&mode=AGENDA"></iframe>
             </div>
         </div>
 
