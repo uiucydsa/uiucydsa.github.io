@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="./images/profile.jpg">
+    <meta property="og:image:type" content="image/jpg">
+    <meta name="description"
+        content="The official website of Young Democratic Socialists of America at the University of Illinois at Urbana-Champaign" />
+    <meta property="og:title" content="UIUC YDSA">
+    <meta property="og:description" content="UIUC Chapter of Young Democratic Socialists of America">
+    <title>UIUC YDSA</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        @font-face {
+            font-family: 'ManifoldDSA';
+            src: url('/fonts/ManifoldDSA-Regular.eot');
+            src: url('/fonts/ManifoldDSA-Regular.woff2') format('woff2'),
+                url('/fonts/ManifoldDSA-Regular.woff') format('woff'),
+                url('/fonts/ManifoldDSA-Regular.eot?#iefix') format('embedded-opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ManifoldDSA';
+            src: url('/fonts/ManifoldDSA-RegularItalic.eot');
+            src: url('/fonts/ManifoldDSA-RegularItalic.woff2') format('woff2'),
+                url('/fonts/ManifoldDSA-RegularItalic.woff') format('woff'),
+                url('/fonts/ManifoldDSA-RegularItalic.eot?#iefix') format('embedded-opentype');
+            font-weight: normal;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ManifoldDSA';
+            src: url('/fonts/ManifoldDSA-DemiBold.eot');
+            src: url('/fonts/ManifoldDSA-DemiBold.woff2') format('woff2'),
+                url('/fonts/ManifoldDSA-DemiBold.woff') format('woff'),
+                url('/fonts/ManifoldDSA-DemiBold.eot?#iefix') format('embedded-opentype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ManifoldDSA';
+            src: url('/fonts/ManifoldDSA-Bold.eot');
+            src: url('/fonts/ManifoldDSA-Bold.woff2') format('woff2'),
+                url('/fonts/ManifoldDSA-Bold.woff') format('woff'),
+                url('/fonts/ManifoldDSA-Bold.eot?#iefix') format('embedded-opentype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ManifoldDSA';
+            src: url('/fonts/ManifoldDSA-BoldItalic.eot');
+            src: url('/fonts/ManifoldDSA-BoldItalic.woff2') format('woff2'),
+                url('/fonts/ManifoldDSA-BoldItalic.woff') format('woff'),
+                url('/fonts/ManifoldDSA-BoldItalic.eot?#iefix') format('embedded-opentype');
+            font-weight: bold;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+
+        :root {
+            --bg-primary: #fff;
+            --text-primary: #590303;
+            --glass-light: #f5f5f7;
+            --glass-text: #EC1F27;
+            --border-light: rgba(0, 0, 0, 0.1);
+            --accent-color: #3B3838;
+
+            /* Dark Theme */
+            --bg-primary-dark: rgba(74, 0, 0, 0.85);
+            --text-primary-dark: #f8f9fa;
+            --glass-dark: rgba(74, 0, 0, 0.85);
+            --glass-text-dark: #f8f9fa;
+            --border-dark: rgba(255, 255, 255, 0.15);
+            --accent-color-dark: #ff2424;
+        }
+
+        .dark-theme {
+            --bg-primary: var(--bg-primary-dark);
+            --text-primary: var(--text-primary-dark);
+            --glass-light: var(--glass-dark);
+            --glass-text: var(--glass-text-dark);
+            --border-light: var(--border-dark);
+            --accent-color: var(--accent-color-dark);
+        }
+
+        :root {
+            --font-family-base: 'ManifoldDSA', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.5s ease, color 0.3s ease;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            line-height: 1.6;
+            font-weight: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism elements */
+        header,
+        .gallery-item,
+        footer {
+            background: var(--glass-light) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: var(--border-light) !important;
+            color: var(--glass-text) !important;
+        }
+
+        /* Reusable glass card for hero/other panels that should adapt to theme */
+        .glass {
+            background: var(--glass-light);
+            color: var(--glass-text);
+            border: 1px solid var(--border-light);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Header specific */
+        header {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Navigation */
+        nav a {
+            color: var(--glass-text);
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+
+        /* Navigation layout fixes */
+        #nav-menu ul {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            #nav-menu ul {
+                flex-direction: column;
+                align-items: start;
+                gap: 0.5rem;
+            }
+        }
+
+        #nav-menu button#theme-toggle {
+            margin-left: 0.5rem;
+            background: var(--glass-light);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Theme toggle button */
+        #theme-toggle {
+            background: var(--glass-light);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero section */
+        #home {
+            background-image: url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Gallery */
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .gallery-img:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5vh;
+            background: var(--glass-light);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .caption {
+            color: var(--text-primary);
+        }
+
+
+        @keyframes move {
+            0% {
+                transform: scale(1) translate(10px, -30px);
+            }
+
+            38% {
+                transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg);
+            }
+
+            40% {
+                transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg);
+            }
+
+            78% {
+                transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg);
+            }
+
+            80% {
+                transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg);
+            }
+
+            100% {
+                transform: scale(1) translate(10px, -30px);
+            }
+        }
+
+        .desktop-dropdown-menu {
+            margin-top: 0.5rem;
+            pointer-events: auto;
+            background: var(--glass-light);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+        }
+
+        .desktop-dropdown:hover .desktop-dropdown-menu {
+            display: block;
+        }
+
+        #side-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 400px;
+            background: var(--bg-primary);
+            border-left: 1px solid var(--border-light);
+            overflow-y: auto;
+            display: none;
+            padding-top: 5rem;
+        }
+
+        @media (min-width: 1024px) {
+            #side-panel {
+                display: block;
+            }
+
+            body {
+                padding-right: 400px;
+            }
+        }
+
+        #side-panel .panel-section {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        #side-panel .glass {
+            padding: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        #side-panel .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 0.5rem;
+        }
+
+        #side-panel .section-header img {
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+        }
+
+        #side-panel .section-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--glass-text);
+        }
+
+        #calendar-embed {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            background: transparent;
+        }
+    </style>
+</head>
